@@ -37,6 +37,18 @@ const readById=async (req,res)=>{
         })
     }
 }
+const update =async (res,req)=>{
+    const {id}=req.params
+    try {
+        const User= await user.findByIdAndUpdate(id,req.body,{
+         new:true   
+        })
+    } catch (error) {
+        return res.status(500).json({
+            msg:"Error al actualizar el usuario",error 
+        })
+    }
+}
 export {
     create
 }
