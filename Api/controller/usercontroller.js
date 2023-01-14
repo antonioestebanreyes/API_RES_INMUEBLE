@@ -24,6 +24,19 @@ const read=async (req,res)=>{
         
     }
 }
+const readById=async (req,res)=>{
+    const {id}=req.params;
+    try {
+        const User= await user.findById(id)
+        return res.json({
+            msg:"Encontrado",User
+        })
+    } catch (error) {
+        return res.json({
+            msg:"Error al buscar por id",error
+        })
+    }
+}
 export {
     create
 }
