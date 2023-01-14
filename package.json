@@ -1,0 +1,22 @@
+{
+  "name": "api_res_inmueble",
+  "version": "1.0.0",
+  "description": "Una api de inmueble",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js "
+  },
+  "type": "module",
+  "keywords": [
+    "inmueble"
+  ],
+  "author": "Antonio",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "eslint": "^8.27.0",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20"
+  }
+}
