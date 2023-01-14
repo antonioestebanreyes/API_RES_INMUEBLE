@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import { string } from "prop-types";
+import mongoose, { model } from "mongoose";
 
-const itemSchema= new mongoose.Schema({
+
+const userSchema= new mongoose.Schema({
     nombre:String,
 apellidos:String,
 Fecha_de_nacimiento:String,
@@ -12,3 +12,5 @@ dirección:String,
 Contraseña:String,
 Personas_de_contacto:String
 })
+
+export default mongoose.model("user",userSchema)
