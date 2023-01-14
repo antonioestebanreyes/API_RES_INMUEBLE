@@ -43,11 +43,27 @@ const update =async (res,req)=>{
         const User= await user.findByIdAndUpdate(id,req.body,{
          new:true   
         })
+        return res.json({
+            msg:"Actualizado con exito",User
+        })
     } catch (error) {
         return res.status(500).json({
             msg:"Error al actualizar el usuario",error 
         })
     }
+}
+const remove =async(res,req) =>{
+    const {id}=req.params;
+try {
+    const User= await user.findByIdAndDelete(id)
+    return res.json({
+        msg:"Eliminado con exito",User
+    })
+} catch (error) {
+    return res.status(500).json({
+        msg:"Error al eliminar el usurio",error
+    })
+}
 }
 export {
     create

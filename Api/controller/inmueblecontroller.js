@@ -52,7 +52,7 @@ const update=async (req,res)=>{
 const {id}=req.params;
 try {
     const Inmueble=await inmueble.findByIdAndUpdate(id,req.body,{
-        nem:true
+        new:true
     })
     return res.json({
         msg:"Actualizar exitosa",Inmueble
