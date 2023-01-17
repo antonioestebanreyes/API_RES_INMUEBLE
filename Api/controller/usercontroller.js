@@ -1,3 +1,4 @@
+
 import user from '../model/user.js'
 const create = async (req,res)=>{
     try {
@@ -62,9 +63,10 @@ try {
 } catch (error) {
     return res.status(500).json({
         msg:"Error al eliminar el usurio",error
+
     })
 }
 }
 export {
-    create
+    create,remove,readById,read,update
 }
