@@ -80,12 +80,12 @@ msg:"Eliminado con exito",Inmueble
 
 
 async function searchDePrecio (req,res){
-   
+    const {precio}=req.body;
+   console.log("este es precio",precio);
+   console.log(res);
     try {
  const Inmueble=await inmueble.find(
-    {'precio':{
-        $gte:1,//mayor o igual que (sgte)
-    },}
+    { precio: { $eq:precio } }
 )
     return res.json({
             msg:Inmueble
@@ -102,12 +102,11 @@ async function searchDePrecio (req,res){
   } 
 
   const searchPais= async(req,res)=>{
+    const {País}=req.body;
 try {
     const Inmueble =await inmueble.find(
-        {País:{
-        $ne:'American'
-    }
-})
+        { País: { $eq:País } }
+      )
     return res.josn({
         msg:'Este sn los inmueble encontrados',Inmueble
     })
