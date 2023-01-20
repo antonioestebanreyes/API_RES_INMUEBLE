@@ -6,7 +6,7 @@ export default {
         
     },
     database:{
-        uri:process.env.database|| 'mongodb://localhost/test', 
+        uri:process.env.BD_monsege|| 'mongodb://localhost/test', 
     }
     
 }

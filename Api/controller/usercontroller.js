@@ -14,7 +14,7 @@ const create = async (req,res)=>{
 }
 const read=async (req,res)=>{
     try {
-        const User= user.find(req.query)
+        const User=await user.find(req.query)
         return res.json({
             msg:'usurio encontrado',User
         })
@@ -25,6 +25,8 @@ const read=async (req,res)=>{
         
     }
 }
+
+
 const readById=async (req,res)=>{
     const {id}=req.params;
     try {
@@ -38,7 +40,7 @@ const readById=async (req,res)=>{
         })
     }
 }
-const update =async (res,req)=>{
+const update =async (req,res)=>{
     const {id}=req.params
     try {
         const User= await user.findByIdAndUpdate(id,req.body,{
@@ -53,7 +55,7 @@ const update =async (res,req)=>{
         })
     }
 }
-const remove =async(res,req) =>{
+const remove =async(req,res) =>{
     const {id}=req.params;
 try {
     const User= await user.findByIdAndDelete(id)
