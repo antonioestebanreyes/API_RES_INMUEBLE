@@ -102,19 +102,26 @@ async function searchDePrecio (req,res){
   } 
 
   const searchPais= async(req,res)=>{
-    const {País}=req.body;
-try {
-    const Inmueble =await inmueble.find(
-        { País: { $eq:País } }
-      )
-    return res.josn({
-        msg:'Este sn los inmueble encontrados',Inmueble
-    })
-} catch (error) {
-    return res.status(500).json({
-        mgs:'Inmueble no encontrado'
-    })
-}
+    
+    const { País}=req.body;
+    console.log("este es precio", País);
+    console.log(res);
+     try {
+  const Inmueble=await inmueble.find(
+     { País: { $eq: País } }
+ )
+     return res.json({
+             msg:Inmueble
+         })
+ 
+ 
+ 
+     } catch (error) {
+         return res.status(500).json({
+             msg:'Error al buscar inmueble',error
+       
+       })  
+     }
   }
 
 export {
