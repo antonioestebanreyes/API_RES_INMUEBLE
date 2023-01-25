@@ -79,14 +79,16 @@ msg:"Eliminado con exito",Inmueble
 }
 
 
+
 async function searchDePrecio (req,res){
-    const {precio}=req.body;
-   console.log("este es precio",precio);
+   
+ const {precio}=req.body
    console.log(res);
     try {
- const Inmueble=await inmueble.find(
-    {  precio: {  $eq:precio }}
-)
+  const Inmueble = await inmueble.find({
+        precio:{ $gte:precio}
+      });
+
     return res.json({
             msg:Inmueble
         })
@@ -123,23 +125,6 @@ async function searchDePrecio (req,res){
        })  
      }
   }
-const serachRango= async(req,res)=>{
-const {precio}=req.body
-try {
-    const Imueble= await inmueble.find(
-        {
-            precio:{$gt:precio}
-        }
-    )
-    return res.json({
-        msg:"Rango de precio con exito",Imueble
-    })
-} catch (error) {
-   return res.status(500).json({
-    msg:'Error al buscar',error
-   }) 
-}
-}
 export {
-    read,create,readById,update,remove,searchDePrecio,searchPais,serachRango
+    read,create,readById,update,remove,searchDePrecio,searchPais
 }
