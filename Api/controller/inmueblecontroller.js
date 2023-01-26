@@ -83,7 +83,7 @@ msg:"Eliminado con exito",Inmueble
 async function searchDePrecio (req,res){
    
  const {precio}=req.body
-   console.log(res);
+   
     try {
   const Inmueble = await inmueble.find({
         precio:{ $gte:precio}
@@ -125,6 +125,25 @@ async function searchDePrecio (req,res){
        })  
      }
   }
+  const seachEconomico= async (req,res)=>{
+    const {precio}=req.body
+    try {
+        const Inmueble=await inmueble.find(
+            { precio: { $lte: precio } }
+        )
+        return res.json({
+          msg:"El inmueble ecomicos ",Inmueble
+
+
+            })
+       
+    } 
+    catch (error) {
+        return res.status.status(500).json({
+            msg:"Este es un error ",error
+        })
+    }
+  }
 export {
-    read,create,readById,update,remove,searchDePrecio,searchPais
+    read,create,readById,update,remove,searchDePrecio,searchPais,seachEconomico
 }
