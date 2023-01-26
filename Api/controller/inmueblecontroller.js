@@ -80,7 +80,7 @@ msg:"Eliminado con exito",Inmueble
 
 
 
-async function searchDePrecio (req,res){
+async function searchDePrecioAlto (req,res){
    
  const {precio}=req.body
    
@@ -145,5 +145,5 @@ async function searchDePrecio (req,res){
     }
   }
 export {
-    read,create,readById,update,remove,searchDePrecio,searchPais,seachEconomico
+    read,create,readById,update,remove,searchDePrecioAlto,searchPais,seachEconomico
 }
