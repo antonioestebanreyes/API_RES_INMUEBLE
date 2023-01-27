@@ -1,5 +1,5 @@
 import express from 'express'
-import  {create,read,readById,update,remove,searchDePrecio} from '../controller/inmueblecontroller.js'
+import  {create,read,readById,update,remove} from '../controller/inmueblecontroller.js'
 const router=express.Router();
 router.route('/inmueble').post(create)
 router.route('/inmueble').get(read)
