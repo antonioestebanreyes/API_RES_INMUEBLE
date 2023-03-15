@@ -24,4 +24,3 @@ server.on('listening', () => {
 
 server.listen(config.server.port);
 database();
-//Iniciar la conexión a la base de datos

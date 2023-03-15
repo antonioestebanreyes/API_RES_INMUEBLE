@@ -1,8 +1,12 @@
-
+import bcrypt from "bcrypt"
 import user from '../model/user.js'
 const create = async (req,res)=>{
     try {
+         const hashin=await bcrypt.hash(req.body.Contraseña,10)
+        req.body.Contraseña=hashin
         const User=await user.create(req.body)
+        User.Contraseña=undefined
+       
         return res.json({
             msg:'user creado con exito',User
         })

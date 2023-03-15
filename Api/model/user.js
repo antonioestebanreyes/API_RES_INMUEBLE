@@ -2,14 +2,40 @@ import mongoose, { model } from "mongoose";
 
 
 const userSchema= new mongoose.Schema({
-    nombre:String,
-apellidos:String,
-Fecha_de_nacimiento:String,
-DNI:String,
-teléfono:Number,
-correo:String,
-dirección:String,
-Contraseña:String,
+    nombre:{
+        type:String,
+        required:true,
+    },
+apellidos:{
+    type:String,
+    required:true,
+},
+Fecha_de_nacimiento:{
+    type:String,
+    required:true
+},
+DNI:{
+    type:String,
+    required:true
+},
+teléfono:{
+    type:Number,
+    required:true
+},
+correo:{
+    type:String,
+    required:true,
+    unique:true
+// Unique es para que se unico el correo y non se repita
+},
+dirección:{
+    type:String,
+    required:true,
+},
+Contraseña:{
+    type:String,
+    required:true,
+},
 Personas_de_contacto:String
 })
 
