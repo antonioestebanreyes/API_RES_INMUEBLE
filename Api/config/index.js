@@ -8,5 +8,7 @@ export default {
     database:{
         uri:process.env.BD_monsege|| 'mongodb://localhost/test', 
     },
-    jwtSecret: process.env.JWT_SECRET,
+    jwtSecret:{
+      Secret: process.env.JWT_SECRET 
+    } 
 }

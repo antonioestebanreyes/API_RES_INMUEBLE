@@ -1,6 +1,10 @@
-import bcrypt from "bcrypt"
+import bcrypt from 'bcrypt';
 import user from '../model/user.js'
-import config from "../config/index.js"
+//import config from "../config/index.js"
+import config from '../config/index.js';
+import dotenv from "dotenv"
+dotenv.config()
+import jwt from 'jwt-simple'
 const create = async (req,res)=>{
     try {
          const hashin=await bcrypt.hash(req.body.Contraseña,10)
@@ -20,6 +24,7 @@ const create = async (req,res)=>{
 
 const login=async(req,res)=>{
    const {body}=req;
+   console.log(process.env.JWT_SECRE);
    //Validacion 
    if (!body.Contraseña|| !body.correo) {
     return res.status(400).json({
@@ -33,23 +38,28 @@ try {
         correo:body.correo,
     });
    // Validacion de user
+   console.log(User)
     if (!User) {
         return res.status(403).json({
             msg:"Credenciales invalidas"
         })
     }
-    // Validacion body.cotraseña con user.contraseña
+    // Validacion body.cotraseña con user.contrasea , usado el paquete de bcypt
     const isvalida =await bcrypt.compare(body.Contraseña,User.Contraseña)
+    console.log(body.Contraseña,"one")
+    console.log(User.Contraseña,"two")
 if (!isvalida) {
     return res.status(403).json({
         msg:'credenciles invalidas'
     })
 }
 //Aqui estamos hacediendo al id del usuario guardo llamado preveviente en la busquedad user.findOne
+//En el payload podemos guardar mas propiedaes al obcj...
+console.log(User.id , "id")
 const payload={
     userId:User.id
 }
-const token = jwt.encode(payload, config.jwtSecret);
+const token = jwt.encode(payload,process.env.JWT_SECRE)//Verifocar  el error de importacio de dotenv
 
 return res.json({
   msg: 'Login correcto',token
