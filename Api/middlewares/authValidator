@@ -1,0 +1,33 @@
+import jwt from "jwt-simple"
+import user from "../model/user";
+const  authValitador=async (req,res,next)=>{
+
+    const {authorization:token}=req.headers;
+    if(!token){
+        return res.status(403).JSON({
+msg:"Falta la cabezera del header"
+        })
+    }
+    try {
+        const payload=jwt.decode(token,config.jwtSecret)
+        const {userId}=payload
+        if (!userId) {
+            res.status(403).JSON({
+                msg:"toke Valilation"
+            })
+        }
+        const User= await user.findById(userId)
+        if (!User){
+            return res.status(403).JSON({
+                msg:"toke invalido"
+            })
+        }
+        next()
+    } catch (error) {
+        return res.status.JSON({
+            msg:"toke invalido"
+        })
+        
+    }
+}
+export{authValitador}

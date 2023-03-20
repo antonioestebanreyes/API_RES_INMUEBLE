@@ -4,6 +4,7 @@ import ofertacontroller from '../Api/router/routerOferta.js'
 import routerespecifico from '../Api/router/routerespecifico.js'
 import routeruser from '../Api/router/userouter.js'
 import routeuser from '../Api/router/userouter.js'
+import { authValitador } from './middlewares/authValitador.js'
 const api=express();
 api.use(express.json());
 api.get('/status',(_,res)=>{
@@ -12,10 +13,11 @@ api.get('/status',(_,res)=>{
     })
 })
 
-api.use(inmueblecontroller)
-api.use(ofertacontroller)
 api.use(routerespecifico)
 api.use(routeruser)
 api.use(routeuser )
+api.use(authValitador)
+api.use(inmueblecontroller)
+api.use( ofertacontroller )
 
 export default api
