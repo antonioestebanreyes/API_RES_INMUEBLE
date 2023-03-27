@@ -57,7 +57,8 @@ if (!isvalida) {
 //En el payload podemos guardar mas propiedaes al obcj...
 console.log(User.id , "id")
 const payload={
-    userId:User.id
+    userId:User.id,
+    role:User.rol
 }
 const token = jwt.encode(payload,process.env.JWT_SECRE)//Verifocar  el error de importacio de dotenv
 

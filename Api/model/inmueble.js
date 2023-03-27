@@ -12,6 +12,7 @@ Numero_interior:Number,
     Descripción:String,
     Numero_de_recámaras:String,
     Fotos_del_domicilio:String,
+    
 
 })
 
