@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import user from '../model/user.js'
-//import config from "../config/index.js"
 import config from '../config/index.js';
 import dotenv from "dotenv"
 dotenv.config()
@@ -28,7 +27,7 @@ const login=async(req,res)=>{
    //Validacion 
    if (!body.Contraseña|| !body.correo) {
     return res.status(400).json({
-        msg:"Ingreso mal la ontraseña"
+        msg:"Ingreso la contraseña mal"
     })
    }
 

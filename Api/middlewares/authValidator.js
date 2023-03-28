@@ -1,4 +1,4 @@
- import jwt from "jwt-simple"
+  import jwt from "jwt-simple"
 import user from "../model/user.js";
 import dotenv from "dotenv"
 
@@ -15,9 +15,9 @@ msg:"Falta el token en los header"
         // Aqui se esta decoficado el paquete jwt-simple
         const payload=jwt.decode(token,process.env.JWT_SECRE)
         // Aqui estamos haciendo una destructuracion, para sacar userId
-        const {userId}=payload
+        const {userId,rol}=payload
         // Aqui estamos haciendo una validacion si no es diferente
-        if (!userId) {//ok
+        if (!userId && rol !== "administrator") {//ok
           return  res.status(403).json({
                 msg:"toke invalido"
             })
@@ -29,6 +29,16 @@ msg:"Falta el token en los header"
                 msg:"toke invalido"
             })
         }
+ const admit= await user.find({
+            rol:"administrator"
+        })
+        if(admit=="administrator"){
+            return res.status(403).json({
+                msg:"token invalido"
+            })
+        }
+
+
         next()
     } catch (error) {
         //Acá falla cuando el token no se pudo decodificar con la llave que teníamos o era un token inválido
@@ -39,8 +49,8 @@ msg:"Falta el token en los header"
 }
 
 
-export {auth}
+export {auth} 
+
 
 
  
-

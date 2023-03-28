@@ -29,7 +29,7 @@ teléfono:{
 correo:{
     type:String,
     required:[true,"El correo es requerido"],
-    unique:true,
+    unique:[true,"el correo no debe esta duplicado"],
     maxlength:[100,"el correo no puede tener menmos de 100 caracteres"],
     match:[/.+\@.+\..+/,"este correo es invalida, por favor ingrese correo correcto"]
 // Unique es para que se unico el correo y non se repita
